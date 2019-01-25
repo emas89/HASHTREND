@@ -1,0 +1,28 @@
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 mx-auto text-center">
+				<h2>Welcome to your personal account space</h2>
+				<br><br>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 mr-auto text-center">
+				<h5>{{ user.email }}</h5>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="text-center">
+			<a class="btn btn-primary" href="{% url 'hashtrend:logout' %}" role="button">Log out</a>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

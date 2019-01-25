@@ -1,0 +1,528 @@
+<!-- Hashtrend landing page - main content -->
+
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>Hashtrend | Hashtag your world</title>
+		<meta name="description" content="Hashtrend a Django-based, responsive photo aggregator">
+		<meta name="author" content="Emanuele">
+
+		<!-- Mobile Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="static/hashtrend/images/favicon.jpg">
+
+		<!-- Web Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Ranga:700,400,300" rel="stylesheet">
+
+		<!-- Bootstrap core CSS -->
+		<link href="static/hashtrend/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Font Awesome CSS -->
+		<link href="static/hashtrend/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+		<!-- Plugins -->
+		<link href="static/hashtrend/css/animations.css" rel="stylesheet">
+
+		<!-- Hashtrend core CSS file -->
+		<link href="static/hashtrend/css/style.css" rel="stylesheet">
+
+	</head>
+
+	<body class="no-trans">
+		<!-- scrollToTop -->
+		<!-- ================ -->
+		<div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+
+		<!-- header start -->
+		<!-- ================ --> 
+		<header class="header fixed clearfix navbar navbar-fixed-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+
+						<!-- header-left start -->
+						<!-- ================ -->
+						<div class="header-left clearfix">
+
+							<!-- logo and slogan -->
+							<div class="logo smooth-scroll">
+								<a href="#banner"><img id="logo" src="static/hashtrend/images/logo.png" alt="Hashtrend"></a>
+								<div class="site-slogan">Hastag Your World</div>
+							</div>
+
+						</div>
+						<!-- header-left end -->
+
+					</div>
+					<div class="col-md-8">
+
+						<!-- header-right start -->
+						<!-- ================ -->
+						<div class="header-right clearfix">
+
+							<!-- main-navigation start -->
+							<!-- ================ -->
+							<div class="main-navigation animated">
+
+								<!-- navbar start -->
+								<!-- ================ -->
+								<nav class="navbar navbar-default" role="navigation">
+									<div class="container-fluid">
+
+										<!-- Toggle get grouped for better mobile display -->
+										<div class="navbar-header">
+											<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+												<span class="sr-only">Toggle navigation</span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+											</button>
+										</div>
+
+										<!-- Collect the nav links, forms, and other content for toggling -->
+										<div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
+											<ul class="nav navbar-nav navbar-right">
+												<li class="active"><a href="#banner">Home</a></li>
+												<li><a href="#about">About</a></li>
+												<li><a href="#services">Services</a></li>
+												<li><a href="#clients">Clients</a></li>
+												<li><a href="#faq">FAQ</a></li>
+												<li><a href="#contact">Contact</a></li>
+												<li>
+													{% if user.is_authenticated %}
+													<a href="{% url 'hashtrend:account' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+													{% else %}
+													<a href="{% url 'hashtrend:login' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+												</li>
+												{% endif %}
+											</ul>
+										</div>
+
+									</div>
+								</nav>
+								<!-- navbar end -->
+
+							</div>
+							<!-- main-navigation end -->
+
+						</div>
+						<!-- header-right end -->
+
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- header end -->
+
+		<!-- banner start -->
+		<!-- ================ -->
+		<div id="banner" class="banner">
+			<div class="banner-image"></div>
+			<div class="banner-caption">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
+							<div class="hashtrend-title">
+								<h1 class="text-center">Welcome to <span>Hashtrend</span></h1>
+								<p class="lead text-center">Aggregate your favourite social medias photos in an unique place and manage them as you want ! </p>
+								<!-- Search form -->
+								<form class="searchform" method="get" action="{% url 'hashtrend:search' %}" accept-charset="utf-8">
+  									<input class="form-control" type="text" placeholder="Enter your trends here (ex. SpaceX)" name="query">
+  									<input class="erry" type="submit" value="GO">
+								</form>		
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- banner end -->
+
+		<!-- section start -->
+		<!-- ================ -->
+		<div class="section clearfix object-non-visible" data-animation-effect="fadeIn">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 id="about" class="title text-center">About <span>Hashtrend</span></h1>
+						<p class="lead text-center">It retrieves photos from the major social medias by their hashtags and creates an user-friendly and completely customizable social wall with the collected results</p>
+						<div class="space"></div>
+						<div class="row">
+							<div class="col-md-6">
+								<img src="static/hashtrend/images/section-image-1.png" alt="">
+								<div class="space"></div>
+							</div>
+							<div class="col-md-6">
+								<p>Hashtrend is designed for people who work in an artistic and / or design context and who need to effectively manage their web projects.</p>
+								<p>Thanks to Hashtrend it's easy to collect photos from the major social networks, save them or simply copy and paste the associated html code. It can be very useful to :</p>
+								<ul class="list-unstyled">
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i> graphic designers</li>
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i> photographers</li>
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i> webmasters</li>
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i> web bloggers</li>
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i> ... and many others</li>
+								</ul>
+							</div>
+						</div>
+						<div class="space"></div>
+						<h2>Let's take a look at the Hashtrend's features</h2>
+						<div class="row">
+							<div class="col-md-6">
+								<p>No more photos scattered around the web.</p>
+								<p>No more waste of time.</p>
+								<p>Make your project cleaner, work faster and in a smarter way.</p>
+								<p>Your time is precious, optimize it thanks to Hashtrend's efficient search algorithm !</p>
+							</div>
+							<div class="col-md-6">
+								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingOne">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+													Search for your wanted photos
+												</a>
+											</h4>
+										</div>
+										<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+											<div class="panel-body">
+												Photographic research is really intuitive: just write a keyword in the search form and Hashtrend will collect all photos based on that specific hashtag to create an interactive photo wall. Hashtrend gets data through Instagram, Pinterest and Flickr APIs communication in order to guarantee the best result. 
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingTwo">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+													Manage your results
+												</a>
+											</h4>
+										</div>
+										<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+											<div class="panel-body">
+												Copy and paste the associated HTML code of your wanted images to export them in your external projects or sign up / login to save your favourite photos and find more easily the next time.
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingThree">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+													HTrend Database
+												</a>
+											</h4>
+										</div>
+										<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+											<div class="panel-body">
+												HTrend is the dedicated Hashtrend's database. Conceived in PostgreSQL and imagined to offer you the best User Experience, it will safely stock your photos and personal data.
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- section end -->
+
+		<!-- section start -->
+		<!-- ================ -->
+		<div class="section translucent-bg bg-image-1 blue">
+			<div class="container object-non-visible" data-animation-effect="fadeIn">
+				<h1 id="services"  class="text-center title">Hashtrend Services</h1>
+				<div class="space"></div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="media">
+							<div class="media-body text-right">
+								<h4 class="media-heading">Strong communication with third-part APIs</h4>
+								<p>Hashtrend communicates with Instagram's "Hashtag Search" API, Flickr's community-supported API and Pinterest's RESTful API through OAUTH safe protocol in order to collect the most pertinents results based on the user's reseach.</p>
+							</div>
+							<div class="media-right">
+								<i class="fa fa-cog"></i>
+							</div>
+						</div>
+						<div class="media">
+							<div class="media-body text-right">
+								<h4 class="media-heading">Beautiful UI and intuitive UX </h4>
+								<p>Choosing Hashtrend, you can count on a beutiful working and entertainment experience thanks to its modern design and user-friendly graphic interface.</p>
+							</div>
+							<div class="media-right">
+								<i class="fa fa-desktop"></i>
+							</div>
+						</div>
+						<div class="media">
+							<div class="media-body text-right">
+								<h4 class="media-heading">Great community support</h4>
+								<p>Thanks to its interaction with the major photo-based social networks, you can rely on a strong community of users who are able to answer to your questions, no matter their level of complexity. Take a look at our "FAQ" section !</p>
+							</div>
+							<div class="media-right">
+								<i class="fa fa-users"></i>
+							</div>
+						</div>
+					</div>
+					<div class="space visible-xs"></div>
+					<div class="col-sm-6">
+						<div class="media">
+							<div class="media-left">
+								<i class="fa fa-leaf"></i>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">Totally free</h4>
+								<p>Hashtrend's services are totally free to all its levels: from the basic experience with no user's enregistration to the higher database interaction you will not deal with any type of paying subscription. Have fun wit us for free, forever !</p>
+							</div>
+						</div>
+						<div class="media">
+							<div class="media-left">
+								<i class="fa fa-code"></i>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">Continuous improvements</h4>
+								<p>Hashtrend is regularly updated to always offer you the best performances and stability. Users who want to contribute tho its development can easily do a pull request through this GitHub link</p>
+							</div>
+						</div>
+						<div class="media">
+							<div class="media-left">
+								<i class="fa fa-lock"></i>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">Security first</h4>
+								<p>Your security is our first priority. That's why Hashtrend protects your personal data against phishing, pretexting, ID theft and similar through efficient methods like strong passwords encription, csrf tokens and others. You can safely store your photos and data in HTrend database.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- section end -->
+
+		<!-- section start -->
+		<!-- ================ -->
+		<div class="default-bg space blue">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h1 class="text-center">Let's Work Together!</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- section end -->
+
+		<!-- section start -->
+		<!-- ================ -->
+		<div class="section translucent-bg bg-image-2 pb-clear">
+			<div class="container object-non-visible" data-animation-effect="fadeIn">
+				<h1 id="clients" class="title text-center">Clients</h1>
+				<div class="space"></div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="media testimonial">
+							<div class="media-left">
+								<img src="static/hashtrend/images/testimonial-1.png" alt="">
+							</div>
+							<div class="media-body">
+								<h3 class="media-heading">Amazing app!</h3>
+								<blockquote>
+									<p>Thanks to Hashtrend I can organize my work in a totally new creative level.</p>
+									<footer>David, <cite title="Source Title">Freelance photographer</cite></footer>
+								</blockquote>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="media testimonial">
+							<div class="media-left">
+								<img src="static/hashtrend/images/testimonial-2.png" alt="">
+							</div>
+							<div class="media-body">
+								<h3 class="media-heading">A must-have</h3>
+								<blockquote>
+									<p>I recommend Hashtrend to all people who work on photographic project, no matter their complexity.</p>
+									<footer>Andrea, <cite title="Source Title">Web designer</cite></footer>
+								</blockquote>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="media testimonial">
+							<div class="media-left">
+								<img src="static/hashtrend/images/testimonial-3.png" alt="">
+							</div>
+							<div class="media-body">
+								<h3 class="media-heading">Thank You!</h3>
+								<blockquote>
+									<p>My team and I improved our productivity on recent projects thanks to Hashtrend's awesome features !</p>
+									<footer>Julian, <cite title="Source Title">Marketing manager</cite></footer>
+								</blockquote>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			<!-- section start -->
+			<!-- ================ -->
+			<div class="translucent-bg blue">
+				<div class="container">
+					<div class="list-horizontal">
+						<div class="row">
+							<div class="col-xs-2">
+								<div class="list-horizontal-item">
+									<span id="powered">Powered by</span>
+									
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="list-horizontal-item">
+									<img src="static/hashtrend/images/client-1.png" alt="client">
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="list-horizontal-item">
+									<img src="static/hashtrend/images/client-2.png" alt="client">
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="list-horizontal-item">
+									<img src="static/hashtrend/images/client-3.png" alt="client">
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="list-horizontal-item">
+									<img src="static/hashtrend/images/client-4.png" alt="client">
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="list-horizontal-item">
+									<img src="static/hashtrend/images/client-5.png" alt="client">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- section end -->
+		</div>
+		<!-- section end -->
+
+		<!-- section start -->
+		<!-- ================ -->
+		<div class="default-bg space">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h1 class="text-center">10000+ Happy Clients!</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- section end -->
+
+		<!-- footer start -->
+		<!-- ================ -->
+		<footer id="footer">
+
+			<!-- .footer start -->
+			<!-- ================ -->
+			<div class="footer section">
+				<div class="container">
+					<h1 class="title text-center" id="contact">Contact Us</h1>
+					<div class="space"></div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="footer-content">
+								<p class="large">For any question and/or suggestion we encourage you to contact our great team. It will be a pleasure to listen and answer your questions ! </p>
+								<ul class="list-icons">
+									<li><i class="fa fa-map-marker pr-10"></i>67 Avenue d'Italie, Paris 75013</li>
+									<li><i class="fa fa-phone pr-10"></i> +33 1234567890</li>
+									<li><i class="fa fa-fax pr-10"></i> +33 1234567891 </li>
+									<li><i class="fa fa-envelope-o pr-10"></i> support@hashtrend.com</li>
+								</ul>
+								<ul class="social-links">
+									<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+									<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+									<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+									<li class="instagram"><a target="_blank" href="http://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+									<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+									<li class="youtube"><a target="_blank" href="http://www.youtube.com"><i class="fa fa-youtube"></i></a></li>
+									<li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fa fa-flickr"></i></a></li>
+									<li class="pinterest"><a target="_blank" href="http://www.pinterest.com"><i class="fa fa-pinterest"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="footer-content">
+								<form role="form" id="footer-form">
+									<div class="form-group has-feedback">
+										<label class="sr-only" for="name2">Name</label>
+										<input type="text" class="form-control" id="name2" placeholder="Name" name="name2" required>
+										<i class="fa fa-user form-control-feedback"></i>
+									</div>
+									<div class="form-group has-feedback">
+										<label class="sr-only" for="email2">Email address</label>
+										<input type="email" class="form-control" id="email2" placeholder="Enter email" name="email2" required>
+										<i class="fa fa-envelope form-control-feedback"></i>
+									</div>
+									<div class="form-group has-feedback">
+										<label class="sr-only" for="message2">Message</label>
+										<textarea class="form-control" rows="8" id="message2" placeholder="Message" name="message2" required></textarea>
+										<i class="fa fa-pencil form-control-feedback"></i>
+									</div>
+									<input type="submit" value="Send" class="btn btn-default">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- .footer end -->
+
+			<!-- .subfooter start -->
+			<!-- ================ -->
+			<div class="subfooter">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fa fa-linkedin linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fa fa-github github-personal"></i></a></span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- .subfooter end -->
+
+		</footer>
+		<!-- footer end -->
+
+		<!-- JavaScript files placed at the end of the document so the pages load faster
+		================================================== -->
+		<!-- Jquery and Bootstap core js files -->
+		<script type="text/javascript" src="static/hashtrend/plugins/jquery.min.js"></script>
+		<script type="text/javascript" src="static/hashtrend/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- Modernizr javascript -->
+		<script type="text/javascript" src="static/hashtrend/plugins/modernizr.js"></script>
+
+		<!-- Isotope javascript -->
+		<script type="text/javascript" src="static/hashtrend/plugins/isotope/isotope.pkgd.min.js"></script>
+		
+		<!-- Backstretch javascript -->
+		<script type="text/javascript" src="static/hashtrend/plugins/jquery.backstretch.min.js"></script>
+
+		<!-- Appear javascript -->
+		<script type="text/javascript" src="static/hashtrend/plugins/jquery.appear.js"></script>
+
+		<!-- Initialization of Plugins -->
+		<script type="text/javascript" src="static/hashtrend/js/template.js"></script>
+
+	</body>
+</html>

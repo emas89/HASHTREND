@@ -1,0 +1,14 @@
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+
+<form id="login_form" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button class="btn btn-primary" type="submit">Login</button>
+</form>
+<br>
+<p>Not yet registered ?
+<a href="{% url 'hashtrend:sign_up' %}"><u>Sign up for free !</u></a></p>
+
+{% endblock %}
