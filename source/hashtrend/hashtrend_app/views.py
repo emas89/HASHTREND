@@ -61,7 +61,7 @@ def sign_up(request):
 	# Render
 	context = {
 		"form": form,
-		"title": "Register your account",
+		"title": "Sign up",
 		"page_title": "Sign up"
 	}
 	return render(request, 'hashtrend/sign_up.html', context)
