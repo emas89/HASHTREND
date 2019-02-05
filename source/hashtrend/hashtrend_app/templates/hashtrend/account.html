@@ -1,28 +1,177 @@
-{% block title %}{{ page_title }}{% endblock %}
+<!-- User account page -->
 
-{% block content %}
-<section>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 mx-auto text-center">
-				<h2>Welcome to your personal account space</h2>
-				<br><br>
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+
+		<meta name="description" content="Hashtrend a Django-based, responsive photo aggregator">
+		<meta name="author" content="Emanuele">
+
+		<!-- Mobile Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="../../static/hashtrend/images/favicon.png">
+
+		<!-- Web Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Ranga:700,400,300" rel="stylesheet">
+
+		<!-- Bootstrap core CSS -->
+		<link href="../../static/hashtrend/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Font Awesome CSS -->
+		<link href="../../static/hashtrend/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+		<!-- Plugins -->
+		<link href="../../static/hashtrend/css/animations.css" rel="stylesheet">
+
+		<!-- Hashtrend user-account-section CSS file -->
+		<link href="../../static/hashtrend/css/account_page.css" rel="stylesheet">
+
+	</head>
+	<!-- header start -->
+	<!-- ================ --> 
+	<header class="header clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+
+					<!-- header-left start -->
+					<!-- ================ -->
+					<div class="header-left clearfix">
+
+						<!-- logo and slogan -->
+						<div class="logo smooth-scroll">
+							<a href="/"><img id="logo" src="../../static/hashtrend/images/logo.png" alt="Hashtrend" title="Come back to homepage"></a>
+							<div class="site-slogan"><strong>Hashtag Your World</strong></div>
+						</div>
+
+					</div>
+					<!-- header-left end -->
+
+				</div>
+				<div class="col-md-8">
+
+					<!-- header-right start -->
+					<!-- ================ -->
+					<div class="header-right clearfix">
+
+						<!-- main-navigation start -->
+						<!-- ================ -->
+						<div class="main-navigation animated">
+
+							<!-- navbar start -->
+							<!-- ================ -->
+							<nav class="navbar navbar-default" role="navigation">
+								<div class="container-fluid">
+
+									<!-- Toggle get grouped for better mobile display -->
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+									</div>
+
+								</div>
+							</nav>
+							<!-- navbar end -->
+
+						</div>
+						<!-- main-navigation end -->
+
+					</div>
+					<!-- header-right end -->
+
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-4 mr-auto text-center">
-				<h5>{{ user.email }}</h5>
+	</header>
+	<!-- header end -->
+
+	<body>
+		<div class="account_page">
+			<h1 style="text-align: center;">{% block title %}{{ page_title }}{% endblock %}</h1>
+			<section>
+				<div class="container">
+					<div class="row">
+						<div>
+							<h2 style="text-align: center;">Hi {{ user.username }}!
+							<br>
+							Welcome to your personal account space.</h2>
+							<p id="indications" style="text-align: center;">Here you can see your saved medias and manage them.</p>
+				</div>
+			</section>
+
+			<section>
+				<div class="container">
+					<div class="text-center">
+						<a class="btn btn-primary logout_btn" href="{% url 'hashtrend:logout' %}?next=/" role="button">Log out</a>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- footer start -->
+		<!-- ================ -->
+		<footer id="footer">
+
+		<!-- .footer start -->
+		<!-- ================ -->
+		<div class="footer section">
+			<div class="container">
+				<h1 class="title text-center" id="contact">Social Media as information</h1>
+				<div class="space"></div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="footer-content">
+								<p class="large">We live in a world full of data, like never before.<br>
+								Hashtrend's main goal is to convert social posts into a useful flux of informations to share among its users. You will never miss an important event, a local news close to you or a great photo shot taken in your city.</p>
+								<ul class="social-links">
+									<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+									<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+									<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+									<li class="instagram"><a target="_blank" href="http://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+									<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+									<li class="youtube"><a target="_blank" href="http://www.youtube.com"><i class="fa fa-youtube"></i></a></li>
+									<li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fa fa-flickr"></i></a></li>
+									<li class="pinterest"><a target="_blank" href="http://www.pinterest.com"><i class="fa fa-pinterest"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="footer-content">
+								<img src="../../static/hashtrend/images/social_wall.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- .footer end -->
+
+		<!-- .subfooter start -->
+		<!-- ================ -->
+		<div class="subfooter">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fa fa-linkedin linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fa fa-github github-personal"></i></a></span></p>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+		<!-- .subfooter end -->
 
-<section>
-	<div class="container">
-		<div class="text-center">
-			<a class="btn btn-primary" href="{% url 'hashtrend:logout' %}?next=/" role="button">Log out</a>
-		</div>
-	</div>
-</section>
+		</footer>
+		<!-- footer end -->
 
-{% endblock %}
+	</body>
+</html>

@@ -26,10 +26,10 @@ def index(request):
 # SEARCH QUERIES
 def search(request):
 	"""
-	Search a trend through the form in the homepage
+	Search a trend through the form in the homepage.
+	Results from Twitter API and Instagram API
 	"""
-	# Query
-	query = request.GET.get('query')
+	query = request.GET.get(URL)
 
 	# Render
 	context = {
@@ -54,7 +54,7 @@ def sign_up(request):
 			raw_password = form.cleaned_data.get('password1')
 			user = authenticate(username=username, password=raw_password)
 			login(request, user)
-			return redirect('/hashtrend/account')
+			return redirect('/hashtrend_app/account')
 	else:
 		form = SignUpForm()
 
@@ -73,7 +73,7 @@ def sign_up(request):
 
 def account(request):
 	"""
-	USer infos page
+	User infos page
 	"""
 
 	# Render
@@ -82,3 +82,14 @@ def account(request):
 		"page_title": "Your account"
 	}
 	return render(request, 'hashtrend/account.html', context)
+
+
+
+# FAQ page
+def faq(request):
+	"""
+	Hashtrend FAQ section
+	"""
+	
+	# Render
+	return render(request, 'hashtrend/faq.html')

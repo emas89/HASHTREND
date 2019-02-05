@@ -71,9 +71,21 @@ a:focus,
 a:active {
 	outline: none;
 }
+
 .large {
-	font-size: 18px;
+	font-size: 23px;
 }
+@media (min-width:768px) and (max-width:991px) {
+	.large {
+		font-size: 17px;
+	}
+}
+@media (max-width:480px) {
+	.large {
+		font-size: 15px;
+	}
+}
+
 img {
 	display: block;
 	max-width: 100%;

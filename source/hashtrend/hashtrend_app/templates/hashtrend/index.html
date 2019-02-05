@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="static/hashtrend/images/favicon.jpg">
+		<link rel="shortcut icon" href="static/hashtrend/images/favicon.png">
 
 		<!-- Web Fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -55,7 +55,7 @@
 							<!-- logo and slogan -->
 							<div class="logo smooth-scroll">
 								<a href="#banner"><img id="logo" src="static/hashtrend/images/logo.png" alt="Hashtrend"></a>
-								<div class="site-slogan">Hastag Your World</div>
+								<div class="site-slogan">Hashtag Your World</div>
 							</div>
 
 						</div>
@@ -94,18 +94,18 @@
 												<li><a href="#about">About</a></li>
 												<li><a href="#services">Services</a></li>
 												<li><a href="#clients">Clients</a></li>
-												<li><a href="#faq">FAQ</a></li>
+												<li><a href="{% url 'hashtrend:faq' %}">FAQ</a></li>
 												<li><a href="#contact">Contact</a></li>
 												<li>
 													{% if user.is_authenticated %}
-													<a href="{% url 'hashtrend:account' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+													<a href="{% url 'hashtrend:account' %}"><i>{{ user.username }}</i></a>
 													{% else %}
 													<a href="{% url 'hashtrend:login' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
 													{% endif %}
 												</li>
 												{% if user.is_authenticated %}
 												<li>
-													<a href="{% url 'hashtrend:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+													<a href="{% url 'hashtrend:logout' %}?next=/"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 												</li>
 												{% endif %}
 											</ul>
@@ -137,7 +137,7 @@
 						<div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
 							<div class="hashtrend-title">
 								<h1 class="text-center">Welcome to <span>Hashtrend</span></h1>
-								<p class="lead text-center">Aggregate your favourite social medias photos in an unique place and manage them as you want ! </p>
+								<p class="lead text-center">Stay updated on the topics that interest you the most </p>
 								<!-- Search form -->
 								<form class="searchform" method="get" action="{% url 'hashtrend:search' %}" accept-charset="utf-8">
   									<input class="form-control" type="text" placeholder="Enter your trends here (ex. SpaceX)" name="query">
@@ -437,22 +437,17 @@
 		<!-- ================ -->
 		<footer id="footer">
 
-			<!-- .footer start -->
-			<!-- ================ -->
-			<div class="footer section">
-				<div class="container">
-					<h1 class="title text-center" id="contact">Contact Us</h1>
-					<div class="space"></div>
+		<!-- .footer start -->
+		<!-- ================ -->
+		<div class="footer section">
+			<div class="container">
+				<h1 class="title text-center" id="contact">Social Media as information</h1>
+				<div class="space"></div>
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="footer-content">
-								<p class="large">For any question and/or suggestion we encourage you to contact our great team. It will be a pleasure to listen and answer your questions ! </p>
-								<ul class="list-icons">
-									<li><i class="fa fa-map-marker pr-10"></i>67 Avenue d'Italie, Paris 75013</li>
-									<li><i class="fa fa-phone pr-10"></i> +33 1234567890</li>
-									<li><i class="fa fa-fax pr-10"></i> +33 1234567891 </li>
-									<li><i class="fa fa-envelope-o pr-10"></i> support@hashtrend.com</li>
-								</ul>
+								<p class="large">We live in a world full of data, like never before.<br>
+								Hashtrend's main goal is to convert social posts into a useful flux of informations to share among its users. You will never miss an important event, a local news close to you or a great photo shot taken in your city.</p>
 								<ul class="social-links">
 									<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
 									<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
@@ -467,24 +462,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="footer-content">
-								<form role="form" id="footer-form">
-									<div class="form-group has-feedback">
-										<label class="sr-only" for="name2">Name</label>
-										<input type="text" class="form-control" id="name2" placeholder="Name" name="name2" required>
-										<i class="fa fa-user form-control-feedback"></i>
-									</div>
-									<div class="form-group has-feedback">
-										<label class="sr-only" for="email2">Email address</label>
-										<input type="email" class="form-control" id="email2" placeholder="Enter email" name="email2" required>
-										<i class="fa fa-envelope form-control-feedback"></i>
-									</div>
-									<div class="form-group has-feedback">
-										<label class="sr-only" for="message2">Message</label>
-										<textarea class="form-control" rows="8" id="message2" placeholder="Message" name="message2" required></textarea>
-										<i class="fa fa-pencil form-control-feedback"></i>
-									</div>
-									<input type="submit" value="Send" class="btn btn-default">
-								</form>
+								<img src="../../static/hashtrend/images/social_wall.png">
 							</div>
 						</div>
 					</div>
@@ -492,18 +470,18 @@
 			</div>
 			<!-- .footer end -->
 
-			<!-- .subfooter start -->
-			<!-- ================ -->
-			<div class="subfooter">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fa fa-linkedin linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fa fa-github github-personal"></i></a></span></p>
-						</div>
+		<!-- .subfooter start -->
+		<!-- ================ -->
+		<div class="subfooter">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fa fa-linkedin linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fa fa-github github-personal"></i></a></span></p>
 					</div>
 				</div>
 			</div>
-			<!-- .subfooter end -->
+		</div>
+		<!-- .subfooter end -->
 
 		</footer>
 		<!-- footer end -->
