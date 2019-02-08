@@ -1,13 +1,13 @@
-
-<!DOCTYPE html>
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
-	<head>
-		<title>Results</title>
-	</head>
-	<body>
-		
-	</body>
+<html>
+<body>
+	{% if tweets %}
+		{% for tweet in tweets %}
+			<p>{{ tweet.text }}</p>
+			<p>{{ tweet.created_at }}</p>
+			<p>{{ media.media_url }}</p>
+		{% endfor %}
+	{% else %}
+		<h1 style="color: red">No tweets</h1>
+	{% endif %}
+</body>
 </html>

@@ -1,16 +1,19 @@
 # IMPORTS
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from .forms import SignUpForm
 from .models import SavedPhotos
 
+import tweepy
+
 # Create your views here.
+
 
 # INDEX
 def index(request):
@@ -23,19 +26,38 @@ def index(request):
 	return render(request, 'hashtrend/index.html')
 
 
+
+
+# Twitter keys to access the API
+access_token = settings.ACCESS_TOKEN
+access_secret = settings.ACCESS_SECRET
+consumer_key = settings.CONSUMER_KEY
+consumer_secret = settings.CONSUMER_SECRET
+
+# Setup tweepy to authenticate with Twitter credentials:
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_secret)
+
+# Create the API to connect to Twitter with credentials
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, compression=True)
+
 # SEARCH QUERIES
 def search(request):
 	"""
 	Search a trend through the form in the homepage.
-	Results from Twitter API and Instagram API
+	Results comes from Twitter API and Instagram API
 	"""
-	query = request.GET.get(URL)
+	
+	# Query
+	query = request.GET.get('query')
 
-	# Render
+	# Search for latest tweets about user's query
+	tweets = tweepy.Cursor(api.search, q=query, lang="it", include_entities=True).items(50)
+
 	context = {
-		'query': query,
-		'page_title': 'Results'
+		"tweets":tweets
 	}
+
 	return render(request, 'hashtrend/search.html', context)
 
 
