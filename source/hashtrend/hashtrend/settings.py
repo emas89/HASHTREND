@@ -23,10 +23,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b(0g+aad_3h1p=1_4!2rg==m@yfg(e0lkcnl_l1%ejhat=e@3u'
 
 # TWITTER KEYS
-ACCESS_TOKEN = '1041235741932761089-HmsHMCqTKqeThgn4xOlrZwaYUndTiD' # Access token
+TWITTER_ACCESS_TOKEN = '1041235741932761089-HmsHMCqTKqeThgn4xOlrZwaYUndTiD' # Access token
 ACCESS_SECRET = 'Rykjpwlizxqj6u1BEv4GTSBdzzg1VDPTrW1LHq5eLXgHE' # Access token secret
 CONSUMER_KEY = 'tRZNZCpvyW859Nsd3I6Izehxb' # API key
 CONSUMER_SECRET = 'Xy6FUYmqUv6MqkYeGN6oqjY2jpzzUdb71cNJqmv3kMC8mDgTgr' # API secret
+
+# FACEBOOK KEYS
+APP_ID = '2214827642072244' # App ID
+APP_SECRET = '687d993af3ba5f4e9cc83b1d9dd2f3b1' # App secret key
+# FB_APP_ACCESS_TOKEN = '2214827642072244|3WJYUgQJJJQACs_sYf_t8Bkw7aQ' # App access token
+FB_USER_ACCESS_TOKEN = 'EAAfeX77YLLQBABbD59UwdCwscQOHhWwtHlNKtF3YoQ0otLcKFUnOYXuNuZAm5qPN2mdEMKKRiOlCXFLNFtL8CKZAU4AZBMSqveMrispiJFbG0yVA6bfz3nUIjOPRqmZBLZAQUucFyGYXZBSQ078QrAPUm5gPYs0PS3kdtcpQ8xzgZDZD'
+
+
+# GOOGLE NEWS KEY
+NEWS_API_KEY = '0dd591ce36e44869950b409ad856df53' # Google News API key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

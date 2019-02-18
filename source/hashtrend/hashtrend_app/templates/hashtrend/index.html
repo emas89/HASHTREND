@@ -26,7 +26,7 @@
 		<link href="static/hashtrend/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 		<!-- Font Awesome CSS -->
-		<link href="static/hashtrend/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 		<!-- Plugins -->
 		<link href="static/hashtrend/css/animations.css" rel="stylesheet">
@@ -94,7 +94,6 @@
 												<li><a href="#about">About</a></li>
 												<li><a href="#services">Services</a></li>
 												<li><a href="#clients">Clients</a></li>
-												<li><a href="{% url 'hashtrend:faq' %}">FAQ</a></li>
 												<li><a href="#contact">Follow Us</a></li>
 												<li>
 													{% if user.is_authenticated %}
@@ -138,15 +137,24 @@
 							<div class="hashtrend-title">
 								<h1 class="text-center">Welcome to <span>Hashtrend</span></h1>
 								<p class="lead text-center">Stay updated on the topics that interest you the most </p>
+								{% if user.is_authenticated %}
 								<!-- Search form -->
 								<div class="row">
 									<div class="col-md-12">
 										<form class="searchform" method="get" action="{% url 'hashtrend:search' %}" accept-charset="utf-8">
-		  									<input class="form-control" type="text" placeholder="Enter your trends here (ex. SpaceX)" name="query">
+		  									<input class="form-control" type="text" placeholder="Enter your trends here (ex. NASA)" name="query">
 		  									<button type="submit" class="btn btn-outline-secondary search_form_btn"><i class="fa fa-search"></i></i></button>
 										</form>
 									</div>
 								</div>
+
+								{% else %}
+								<h4 class="lead text-center login_or_signup" style="text-transform: uppercase;"><strong>Login or sign up to start a search !</h4></strong>
+								<!-- Search form -->
+								<div class="row">
+									<div class="col-md-12"></div>
+								</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -196,13 +204,13 @@
 										<div class="panel-heading" role="tab" id="headingOne">
 											<h4 class="panel-title">
 												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-													Search for your wanted posts
+													Search for your wanted trends
 												</a>
 											</h4>
 										</div>
 										<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 											<div class="panel-body">
-												Photographic research is really intuitive: just write a keyword in the search form and Hashtrend will collect all photos based on that specific hashtag to create an interactive photo wall. Hashtrend gets data through Instagram, Pinterest and Flickr APIs communication in order to guarantee the best result. 
+												Hashtag research is really intuitive: just write a keyword in the search form and Hashtrend will collect all posts based on that specific key-word to create an interactive photo wall. Hashtrend gets data through Twitter, Facebook (and Instagram) APIs communication in order to guarantee the best results.
 											</div>
 										</div>
 									</div>
@@ -254,7 +262,7 @@
 						<div class="media">
 							<div class="media-body text-right">
 								<h4 class="media-heading">Strong communication with third-part APIs</h4>
-								<p>Hashtrend communicates with Instagram's "Hashtag Search" API and Twitter API through OAUTH safe protocol in order to collect the most pertinents results based on the user's input.</p>
+								<p>Hashtrend communicates with Twitter "Standard Search" API and Facebook API "Graph" through OAUTH safe protocol in order to collect the most pertinents results based on the user's input.</p>
 							</div>
 							<div class="media-right">
 								<i class="fa fa-cog"></i>
@@ -272,7 +280,7 @@
 						<div class="media">
 							<div class="media-body text-right">
 								<h4 class="media-heading">Great community support</h4>
-								<p>Thanks to its interaction with the major photo-based social networks, you can rely on a strong community of users who are able to answer to your questions, no matter their level of complexity. Take a look at our "FAQ" section !</p>
+								<p>Thanks to its interaction with the major photo-based social networks, you can rely on a strong community of users who are able to answer to your questions, no matter their level of complexity.</p>
 							</div>
 							<div class="media-right">
 								<i class="fa fa-users"></i>
@@ -296,7 +304,7 @@
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Continuous improvements</h4>
-								<p>Hashtrend is regularly updated to always offer you the best performances and stability. Users who want to contribute tho its development can easily do a pull request through this GitHub link</p>
+								<p>Hashtrend is regularly updated to always offer you the best performances and stability. Users who want to contribute tho its development can easily do a pull request through the GitHub link located in the footer.</p>
 							</div>
 						</div>
 						<div class="media">
@@ -320,7 +328,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
-						<h1 class="text-center">Let's Work Together!</h1>
+						<h1 class="text-center">Growing awareness, together!</h1>
 					</div>
 				</div>
 			</div>
@@ -343,7 +351,7 @@
 								<h3 class="media-heading">Amazing app!</h3>
 								<blockquote>
 									<p>Thanks to Hashtrend I can organize my work in a totally new creative level.</p>
-									<footer>David, <cite title="Source Title">Freelance photographer</cite></footer>
+									<footer>David, <cite title="Source Title">Freelance journalist</cite></footer>
 								</blockquote>
 							</div>
 						</div>
@@ -356,7 +364,7 @@
 							<div class="media-body">
 								<h3 class="media-heading">A must-have</h3>
 								<blockquote>
-									<p>I recommend Hashtrend to all people who work on photographic project, no matter their complexity.</p>
+									<p>I recommend Hashtrend to all people who work on web information projects, no matter their complexity.</p>
 									<footer>Andrea, <cite title="Source Title">Web designer</cite></footer>
 								</blockquote>
 							</div>
@@ -370,7 +378,7 @@
 							<div class="media-body">
 								<h3 class="media-heading">Thank You!</h3>
 								<blockquote>
-									<p>My team and I improved our productivity on recent projects thanks to Hashtrend's awesome features !</p>
+									<p>I don't miss a news on my favorite trends anymore ! I love the way Hashtrend combines social and informative side</p>
 									<footer>Julian, <cite title="Source Title">Marketing manager</cite></footer>
 								</blockquote>
 							</div>
@@ -453,14 +461,13 @@
 								<p class="large">We live in a world full of data, like never before.<br>
 								Hashtrend's main goal is to convert social posts into a useful flux of informations to share among its users. You will never miss an important event, a local news close to you or a great photo shot taken in your city.</p>
 								<ul class="social-links">
-									<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
-									<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-									<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-									<li class="instagram"><a target="_blank" href="http://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
-									<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-									<li class="youtube"><a target="_blank" href="http://www.youtube.com"><i class="fa fa-youtube"></i></a></li>
-									<li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fa fa-flickr"></i></a></li>
-									<li class="pinterest"><a target="_blank" href="http://www.pinterest.com"><i class="fa fa-pinterest"></i></a></li>
+									<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+									<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
+									<li class="instagram"><a target="_blank" href="http://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+									<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+									<li class="youtube"><a target="_blank" href="http://www.youtube.com"><i class="fab fa-youtube"></i></a></li>
+									<li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fab fa-flickr"></i></a></li>
+									<li class="pinterest"><a target="_blank" href="http://www.pinterest.com"><i class="fab fa-pinterest"></i></a></li>
 								</ul>
 							</div>
 						</div>
@@ -480,7 +487,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fa fa-linkedin linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fa fa-github github-personal"></i></a></span></p>
+						<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fab fa-linkedin-in linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fab fa-github github-personal"></i></a></span></p>
 					</div>
 				</div>
 			</div>

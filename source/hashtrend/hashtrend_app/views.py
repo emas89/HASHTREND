@@ -10,7 +10,12 @@ from django.conf import settings
 from .forms import SignUpForm
 from .models import SavedPhotos
 
+# Tweepy library to access the Twitter API
 import tweepy
+# Facebook-SDK library to access the Facebook Graph API
+import facebook
+# News library to access the Google News API
+from newsapi import NewsApiClient
 
 # Create your views here.
 
@@ -26,36 +31,71 @@ def index(request):
 	return render(request, 'hashtrend/index.html')
 
 
-
+################################################
+#			TWITTER API INTERACTION			   #
+################################################
 
 # Twitter keys to access the API
-access_token = settings.ACCESS_TOKEN
+twitter_access_token = settings.TWITTER_ACCESS_TOKEN
 access_secret = settings.ACCESS_SECRET
 consumer_key = settings.CONSUMER_KEY
 consumer_secret = settings.CONSUMER_SECRET
 
 # Setup tweepy to authenticate with Twitter credentials:
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_secret)
+auth.set_access_token(twitter_access_token, access_secret)
 
 # Create the API to connect to Twitter with credentials
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, compression=True)
+
+
+################################################
+#			FACEBOOK API INTERACTION		   #
+################################################
+
+# Facebook keys to access the API
+app_id = settings.APP_ID
+app_secret = settings.APP_SECRET
+fb_access_token = settings.FB_USER_ACCESS_TOKEN
+
+# Create the API to connect to Facebook with app credentials
+graph = facebook.GraphAPI(access_token=fb_access_token, version="3.1")
+
+
+###############################################
+#		GOOGLE NEWS API INTERACTION			  #
+###############################################
+
+# Google News API key to access the API
+news_api_key = settings.NEWS_API_KEY
+
+# Create the API to connect to Google News with API key
+newsapi = NewsApiClient(api_key=news_api_key)
+
 
 # SEARCH QUERIES
 def search(request):
 	"""
 	Search a trend through the form in the homepage.
-	Results comes from Twitter API and Instagram API
+	Results comes from Twitter 'Standard Search' API,
+	Facebook 'Graph' API and Google News API.
 	"""
 	
 	# Query
 	query = request.GET.get('query')
 
-	# Search for latest tweets about user's query
-	tweets = tweepy.Cursor(api.search, q=query, lang="it", include_entities=True).items(50)
+	# Search for most popular tweets about user's query
+	tweets = tweepy.Cursor(api.search, q=query, lang="en", tweet_mode='extended', include_entities=True, result_type='popular').items(100)
+
+	#fb_data = graph.search(q=query, type='place')
+
+	# Search for most relevant news about user's query
+	all_news = newsapi.get_everything(q=query, language='en', sort_by='relevancy')
 
 	context = {
-		"tweets":tweets
+		"tweets": tweets,
+		#"fb_data": fb_data
+		"all_news": all_news
 	}
 
 	return render(request, 'hashtrend/search.html', context)
@@ -87,7 +127,6 @@ def sign_up(request):
 		"page_title": "Sign up"
 	}
 	return render(request, 'hashtrend/sign_up.html', context)
-
 
 
 # USER ACCOUNT
