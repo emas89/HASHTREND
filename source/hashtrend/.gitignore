@@ -1,3 +1,7 @@
-..\env
-\hashtrend\__pycache__
-\hashtrend_app\__pycache__
+env/
+*.log
+*.pot
+*.pyc
+__pycache__/
+settings.py
+db.sqlite3
