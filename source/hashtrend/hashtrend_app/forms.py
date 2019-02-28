@@ -5,7 +5,7 @@ from django.forms import ModelForm, TextInput
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import SavedPhotos
+from .models import UserLog
 
 # User registration form
 class SignUpForm(UserCreationForm):

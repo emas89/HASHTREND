@@ -33,6 +33,11 @@ h1 {
 	font-weight: 700;
 	margin-bottom: 20px;
 }
+@media (max-width:480px) {
+	h1.text-center {
+		font-size: 28px;
+	}
+}
 h2 {
 	font-size: 28px;
 	margin-bottom: 15px;
@@ -58,11 +63,25 @@ h3 span,
 h4 span {
 	color: #c933eb;
 }
+.intro {
+	font-size: 25px;
+}
+.typed {
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: bold;
+	font-size: 35px;
+	text-transform: uppercase;
+}
+@media (max-width: 480px) {
+	.typed {
+		font-size: 25px;
+	}
+}
 .text-colored {
-	color: #d45def;
+	color: #c933eb;
 }
 a {
-	color: #d45def;
+	color: #c933eb;
 }
 a:hover {
 	color: #c933eb;
@@ -94,13 +113,7 @@ img {
 .list-unstyled li {
 	padding: 5px 0;
 }
-.list-horizontal {
-	padding: 15px 0;
-}
-.list-horizontal-item img {
-	display: block;
-	margin: 0 auto;
-}
+
 .list-icons {
 	padding: 0;
 	margin: 20px 0;
@@ -167,11 +180,6 @@ blockquote {
 .section {
 	background-color: #ffffff;
 	padding: 80px 0;
-}
-
-#powered {
-	font-family: 'Ranga', cursive;
-	font-size: 3.2rem;
 }
 
 /* Backgrounds
@@ -310,6 +318,15 @@ blockquote {
 	margin-bottom: 0;
 }
 
+.credits {
+	text-align: center;
+	padding-top: 20px;
+}
+p.credits a {
+	color: #000;
+	text-decoration: underline;
+}
+
 /* Template Components
 ----------------------------------------------------------------------------- */
 /* Buttons
@@ -318,40 +335,32 @@ blockquote {
 	padding: 8px 15px;
 	font-size: 14px;
 	line-height: 1.42857143;
-	min-width: 160px;
+	min-width: 50px;
 	text-align: center;
-	border-radius: 0;
-	text-transform: uppercase;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-ms-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
-.btn-default {
-	color: #c933eb;
-	border: 1px solid #cccccc;
-}
-.btn-default:hover {
-	color: #ffffff;
-	background-color: #d45def;
-	border-color: #d45def;
-}
 
 .search_form_btn {
 	background-color: #fff;
 	color: rgba(201, 51, 235, .5);
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-	height: 45px;
-	position: absolute;
-	top: 0;
-	left: 78%;
+	margin: 0;
+	padding: 0;
+	border-radius: 0 10px 10px 0;
 }
 
 .search_form_btn:hover {
 	color: #c933eb;
+	background-color: #fff;
 }
+
+.search_form_btn:focus {
+	border-color: #c933eb;
+}
+
 .fa-search {
 	font-size: 2.2rem;
 }
@@ -394,8 +403,8 @@ blockquote {
 	background-color: #333333;
 }
 .panel-heading a:after {
-	font-family: "FontAwesome";
-	content: "\f147";
+	font-family: "Font Awesome 5 free";
+	content: "\f0fe";
 	position: absolute;
 	right: 15px;
 	font-size: 14px;
@@ -405,7 +414,7 @@ blockquote {
 	margin-top: -7px;
 }
 .panel-heading a.collapsed:after {
-	content: "\f196";
+	content: "\f146";
 }
 .panel-heading a:hover {
 	text-decoration: none;
@@ -441,14 +450,11 @@ blockquote {
 ---------------------------------- */
 .form-control {
 	height: 48px;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	border-radius: 10px;
-	display: inline;
+	border-radius: 10px 0 0 10px;
 }
 
-.form-control-feedback {
-	color: #cccccc;
+.form-control:focus {
+	border-color: #c933eb;
 }
 .has-feedback label.sr-only ~ .form-control-feedback {
 	top: 15px;
@@ -456,7 +462,13 @@ blockquote {
 textarea {
 	resize: vertical;
 }
-
+.form-inline {
+	display: flex;
+}
+.signup-form {
+	display: flex;
+	flex: 1 0 auto;
+}
 
 /* Modals
 ---------------------------------- */
@@ -609,7 +621,7 @@ textarea {
 .site-slogan {
 	font-style: italic;
 	font-size: 1.8rem;
-	color: #993399;
+	color: #c933eb;
 }
 
 /* Testimonials
@@ -648,9 +660,6 @@ textarea {
 }
 .social-links li.linkedin a:hover {
 	color: #0077b5;
-}
-.social-links li.googleplus a:hover {
-	color: #dd4b39;
 }
 .social-links li.youtube a:hover {
 	color: #b31217;

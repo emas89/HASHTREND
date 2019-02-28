@@ -29,6 +29,17 @@
 			};
 		});
 
+		// Typed
+		//-----------------------------------------------
+		var typed = $(".typed");
+		$(function() {
+			typed.typed({
+				strings: ["Live Web News", "Popular Social Posts", "#Hashtag Friendly", "dive into hashtrend world !"],
+				typeSpeed: 100,
+				loop: true,
+			});
+		});
+
 		//Scroll Spy
 		//-----------------------------------------------
 		if($(".scrollspy").length>0) {

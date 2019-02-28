@@ -20,7 +20,7 @@
 		<!-- Web Fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/css?family=Ranga:700,400,300" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet">
 
 		<!-- Bootstrap core CSS -->
 		<link href="static/hashtrend/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -99,12 +99,12 @@
 													{% if user.is_authenticated %}
 													<a href="{% url 'hashtrend:account' %}" title="Your Account"><i>{{ user.username }}</i></a>
 													{% else %}
-													<a href="{% url 'hashtrend:login' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+													<a href="{% url 'hashtrend:login' %}"><i class="fa fa-user" aria-hidden="true" title="login or sign up"></i></a>
 													{% endif %}
 												</li>
 												{% if user.is_authenticated %}
 												<li>
-													<a href="{% url 'hashtrend:logout' %}?next=/"><i class="fa fa-sign-out" title="Logout" aria-hidden="true"></i></a>
+													<a href="{% url 'hashtrend:logout' %}?next=/"><i class="fas fa-sign-out-alt" title="Logout" aria-hidden="true"></i></a>
 												</li>
 												{% endif %}
 											</ul>
@@ -136,14 +136,17 @@
 						<div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
 							<div class="hashtrend-title">
 								<h1 class="text-center">Welcome to <span>Hashtrend</span></h1>
-								<p class="lead text-center">Stay updated on the topics that interest you the most </p>
+								<p style="text-align: center;"><span class="typed" style="text-align: center;"></span></p>
+								<p class="lead text-center intro">Stay updated on the topics that interest you the most </p>
 								{% if user.is_authenticated %}
 								<!-- Search form -->
 								<div class="row">
 									<div class="col-md-12">
-										<form class="searchform" method="get" action="{% url 'hashtrend:search' %}" accept-charset="utf-8">
-		  									<input class="form-control" type="text" placeholder="Enter your trends here (ex. NASA)" name="query">
-		  									<button type="submit" class="btn btn-outline-secondary search_form_btn"><i class="fa fa-search"></i></i></button>
+										<form class="searchform form-inline" method="get" action="{% url 'hashtrend:search' %}" accept-charset="utf-8">
+											<div class="signup-form">
+		  										<input class="form-control" type="text" placeholder="Enter your trends here (ex. NASA)" name="query" style="width: 100%;">
+		  										<button type="submit" class="search_form_btn btn btn-default"><i class="fas fa-search"></i></button>
+		  									</div>
 										</form>
 									</div>
 								</div>
@@ -170,7 +173,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h1 id="about" class="title text-center">About <span>Hashtrend</span></h1>
-						<p class="lead text-center">It retrieves posts from the major social medias like Twitter and Instagram by their hashtags and creates an user-friendly social wall with the collected results. For the registered users will be possible to save, delete and reuse their favourite topics.</p>
+						<p class="lead text-center">It retrieves data from the major news-oriented social medias like Twitter and Reddit as well as Google News and creates an user-friendly social wall with the collected results. Start a search is very simple: just sign up or login and insert your keyword into the form.</p>
 						<div class="space"></div>
 						<div class="row">
 							<div class="col-md-6">
@@ -185,7 +188,8 @@
 									<li><i class="fa fa-caret-right pr-10 text-colored"></i> journalists</li>
 									<li><i class="fa fa-caret-right pr-10 text-colored"></i> webmasters</li>
 									<li><i class="fa fa-caret-right pr-10 text-colored"></i> web bloggers</li>
-									<li><i class="fa fa-caret-right pr-10 text-colored"></i>and all type of working category </li>
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i>students </li>
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i>anyone interested in the evolution of a given topic </li>
 								</ul>
 							</div>
 						</div>
@@ -197,6 +201,7 @@
 								<p>No more events missed.</p>
 								<p>Work smarter and faster: Hashtrend shows real time infos.</p>
 								<p>Share specific informations can improve collective security and avoid risk situations.</p>
+								<p>Everyone can access information and increase their knowledge</p>
 							</div>
 							<div class="col-md-6">
 								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -210,7 +215,7 @@
 										</div>
 										<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 											<div class="panel-body">
-												Hashtag research is really intuitive: just write a keyword in the search form and Hashtrend will collect all posts based on that specific key-word to create an interactive photo wall. Hashtrend gets data through Twitter, Facebook (and Instagram) APIs communication in order to guarantee the best results.
+												Hashtag research is really intuitive: just write a keyword in the search form and Hashtrend will collect all posts based on that specific keyword to create an interactive news wall. Hashtrend gets data through Twitter, Reddit and Google News APIs communication in order to guarantee the best results.
 											</div>
 										</div>
 									</div>
@@ -218,13 +223,13 @@
 										<div class="panel-heading" role="tab" id="headingTwo">
 											<h4 class="panel-title">
 												<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-													Manage your results
+													Most relevant results
 												</a>
 											</h4>
 										</div>
 										<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 											<div class="panel-body">
-												Copy and paste the associated HTML code of your wanted images to export them in your external projects or sign up / login to save your favourite photos and find more easily the next time.
+												Hashtrend gives you the most relevant results on a given topic in order to share only qualitative content. Find the most discussed news and read the original articles from their sources.
 											</div>
 										</div>
 									</div>
@@ -238,7 +243,7 @@
 										</div>
 										<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 											<div class="panel-body">
-												HTrend is the dedicated Hashtrend's database. Conceived in PostgreSQL and imagined to offer you the best User Experience, it will safely stock your medias and personal data.
+												HTrend is the dedicated Hashtrend's database. Conceived in PostgreSQL and imagined to offer you the best User Experience, it will safely stock your data.
 											</div>
 										</div>
 									</div>
@@ -262,7 +267,7 @@
 						<div class="media">
 							<div class="media-body text-right">
 								<h4 class="media-heading">Strong communication with third-part APIs</h4>
-								<p>Hashtrend communicates with Twitter "Standard Search" API and Facebook API "Graph" through OAUTH safe protocol in order to collect the most pertinents results based on the user's input.</p>
+								<p>Hashtrend communicates with Twitter Standard Search API, Reddit API and Google News API through OAuth safe protocol in order to collect the most pertinents results based on the user's input.</p>
 							</div>
 							<div class="media-right">
 								<i class="fa fa-cog"></i>
@@ -279,8 +284,8 @@
 						</div>
 						<div class="media">
 							<div class="media-body text-right">
-								<h4 class="media-heading">Great community support</h4>
-								<p>Thanks to its interaction with the major photo-based social networks, you can rely on a strong community of users who are able to answer to your questions, no matter their level of complexity.</p>
+								<h4 class="media-heading">Great news sources</h4>
+								<p>Thanks to its interaction with the major news-based social networks and news applications, you can count on a top quality news feed to satisfy your knowledge purposes.</p>
 							</div>
 							<div class="media-right">
 								<i class="fa fa-users"></i>
@@ -295,7 +300,7 @@
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Totally free</h4>
-								<p>Hashtrend's services are totally free to all its levels: from the basic experience with no user's registration to the higher database interaction you will not deal with any type of paying subscription. Have fun wit us for free, forever !</p>
+								<p>Hashtrend's services are totally free to all its levels: from the basic search experience to the higher database interaction you will not deal with any type of paying subscription. Have fun wit us for free, forever !</p>
 							</div>
 						</div>
 						<div class="media">
@@ -304,7 +309,7 @@
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Continuous improvements</h4>
-								<p>Hashtrend is regularly updated to always offer you the best performances and stability. Users who want to contribute tho its development can easily do a pull request through the GitHub link located in the footer.</p>
+								<p>Hashtrend is regularly updated to always offer you the best performances and stability. Developers who want to contribute to its development can easily do a pull request through the GitHub link on the footer.</p>
 							</div>
 						</div>
 						<div class="media">
@@ -313,7 +318,7 @@
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Security first</h4>
-								<p>Your security is our first priority. That's why Hashtrend protects your personal data against phishing, pretexting, ID theft and similar through efficient methods like strong passwords encription, csrf tokens and others. You can safely store your photos and data in HTrend database.</p>
+								<p>Your security is our first priority. That's why Hashtrend protects your personal data against phishing, pretexting, ID theft and similars situations through efficient methods like strong passwords encription, csrf tokens and others. You can safely store your data in HTrend database.</p>
 							</div>
 						</div>
 					</div>
@@ -387,48 +392,6 @@
 				</div>
 				</div>
 			</div>
-			<!-- section start -->
-			<!-- ================ -->
-			<div class="translucent-bg blue">
-				<div class="container">
-					<div class="list-horizontal">
-						<div class="row">
-							<div class="col-xs-2">
-								<div class="list-horizontal-item">
-									<span id="powered">Powered by</span>
-									
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="list-horizontal-item">
-									<img src="static/hashtrend/images/client-1.png" alt="client">
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="list-horizontal-item">
-									<img src="static/hashtrend/images/client-2.png" alt="client">
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="list-horizontal-item">
-									<img src="static/hashtrend/images/client-3.png" alt="client">
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="list-horizontal-item">
-									<img src="static/hashtrend/images/client-4.png" alt="client">
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="list-horizontal-item">
-									<img src="static/hashtrend/images/client-5.png" alt="client">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- section end -->
 		</div>
 		<!-- section end -->
 
@@ -459,7 +422,7 @@
 						<div class="col-sm-6">
 							<div class="footer-content">
 								<p class="large">We live in a world full of data, like never before.<br>
-								Hashtrend's main goal is to convert social posts into a useful flux of informations to share among its users. You will never miss an important event, a local news close to you or a great photo shot taken in your city.</p>
+								Hashtrend's main goal is to aggregate social posts and news into a useful flux of informations to increase people knowledge. You will never miss an important event, a news close to you or a great photo shot taken in your city.</p>
 								<ul class="social-links">
 									<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
 									<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
@@ -488,6 +451,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fab fa-linkedin-in linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fab fa-github github-personal"></i></a></span></p>
+						<p class="credits">Credits: <a href="https://developer.twitter.com/en.html"> Twitter API</a>, <a href="https://newsapi.org/s/google-news-api"> Google News API</a>, <a href="https://www.reddit.com/dev/api/">Reddit API</a></p>
 					</div>
 				</div>
 			</div>
@@ -514,6 +478,9 @@
 
 		<!-- Appear javascript -->
 		<script type="text/javascript" src="static/hashtrend/plugins/jquery.appear.js"></script>
+
+		<!-- Typed javascript -->
+		<script type="text/javascript" src="static/hashtrend/plugins/typed.js"></script>
 
 		<!-- Initialization of Plugins -->
 		<script type="text/javascript" src="static/hashtrend/js/template.js"></script>

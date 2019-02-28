@@ -32,32 +32,31 @@ h1 {
 	color: #c933eb;
 	text-align: center;
 	text-transform: uppercase;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
 	animation-name: fadeIn;
 	animation-duration: 3s;
+	animation-delay: 1.5s;
 }
 @media (max-width:480px) {
   
   .search_title {
   	font-size: 2.5rem;
+  	padding-bottom: 70px;
   }
   
 }
 
+.no_results {
+	text-align: center;
+}
+
 h3 {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 3.5rem;
+	font-weight: 300;
 	margin-top: 100px;
 	margin-bottom: 0;
 	padding-bottom: 0;
-}
-
-.search_title {
-	padding-bottom: 70px;
-}
-
-h4 {
-	font-size: 18px;
-	font-weight: 700;
 }
 
 a {
@@ -106,12 +105,19 @@ img {
 	margin-bottom: 0;
 }
 
+.credits {
+	text-align: center;
+	padding-top: 20px;
+}
+p.credits a {
+	color: #000;
+	text-decoration: underline;
+}
+
 #tweet_txt,
 #article_description {
-	font-family: 'Open Sans', sans-serif;
-	animation-name: flipInY;
-	animation-duration: 1.5s;
-	animation-delay: 1.2s;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 300;
 }
 
 .tweet_logo {
@@ -121,16 +127,15 @@ img {
 }
 
 .twitter_photos,
-.article_pics {
+.article_pics,
+.reddit_pics {
 	position: relative;
 	width: 100%;
-	animation-name: flipInX;
-	animation-duration: 1.5s;
-	animation-delay: 1.2s;
 }
 
 .tweet_pics,
-.article_pics {
+.article_pics,
+.reddit_pics {
 	border-radius: 5px;
 	display: block;
 	width: 100%;
@@ -155,9 +160,8 @@ img {
 
 .overlay_txt {
 	color: rgba(0, 0, 0, .6);
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
 	font-size: 2rem;
-	font-style: italic;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -311,18 +315,29 @@ img {
 #screen_name,
 #tweet_datetime,
 .article_datetime,
+#domain
  {
 	color: #697882;
 }
 
 #tweet_datetime,
-.article_datetime {
+.article_datetime,
+#domain {
 	text-align: left;
 	font-size: 1.2rem;
 }
 
 #tweet_counters {
 	padding: 5px;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 300;
+}
+
+.generated {
+	animation-name: pulse;
+	animation-iteration-count: infinite;
+	font-size: 3rem;
+	padding:1px;
 }
 
 .fa-heart:hover,
@@ -340,7 +355,7 @@ img {
 
 .slide_list a {
 	opacity: 0;
-	color:#c933eb;
+	color: #c933eb;
 	max-width: 0;
 	display: inline-block;
 	text-decoration: none;
@@ -424,14 +439,39 @@ img {
 	color: red;
 }
 
-#article_title {
-	font-family: 'Rubik', sans-serif;
+#article_title,
+.subreddit_title {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.subreddit_title {
+	padding:10px;
+	color: #000;
+}
+
+#reddit_comments {
+	padding: 10px;
+}
+
+#domain {
+	padding-left: 10px;
+
+}
+
+#reddit_comments:hover {
+	color: #c933eb;
 }
 
 .source_logo {
 	font-size: 2em;
 	text-align: center;
 	color: #C20806;
+}
+
+.reddit_logo {
+	font-size: 2.5em;
+	text-align: center;
+	color: #FF4301;
 }
 
 #return-to-top {

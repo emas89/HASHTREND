@@ -1,6 +1,6 @@
 /* JS file referred to search.html */
 
-// ===== Scroll to Top ====
+// ===== Scroll to Top =====
 $(window).scroll(function() {
     if ($(this).scrollTop() >= 1500) {        // If page is scrolled more than 1500px
         $('#return-to-top').fadeIn(200);    // Fade in the arrow

@@ -22,13 +22,16 @@
 		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
 		<link href="https://fonts.googleapis.com/css?family=Ranga:700,400,300" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Rubik:500" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400" rel="stylesheet">
 
 		<!-- Bootstrap CDN -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 		<!-- Font Awesome CSS -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+		<!-- AOS javascript CDN -->
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 		<!-- Animate.css CDN -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
@@ -135,34 +138,36 @@
 			<div class="row search_results">
 				{% for tweet in tweets %}
 				<div class="item">
-					<div class="masonry_style">
-						<img src="{{ tweet.user.profile_image_url_https }}" class="user_profile_pic"><strong class="username">{{ tweet.user.name }}</strong>
-						<p id="screen_name"><i>@{{ tweet.user.screen_name }}</i></p>
-						<br>
-						<p id="tweet_datetime"><i class="far fa-calendar-alt"></i> {{ tweet.created_at }}</p>
-						<a href="{{ tweet.entities.urls.0.expanded_url }}"><p id="tweet_txt" class="animated" style="color: #000;">{{ tweet.full_text }}</p></a>
-						<div class="twitter_photos animated">
-							{% if tweet.entities.media.0.media_url_https %}
-								<a href="{{ tweet.entities.media.0.media_url_https }}"><img src="{{ tweet.entities.media.0.media_url_https }}" alt="posted-image" class="tweet_pics">
-								<div class="overlay_effect">
-									<div class="overlay_txt">
-										{% if tweet.entities.hashtags.0.text %}
-											#{{ tweet.entities.hashtags.0.text }}
-										{% endif %}
+					<div data-aos="fade-up-right">
+						<div class="masonry_style">
+							<img src="{{ tweet.user.profile_image_url_https }}" class="user_profile_pic"><strong class="username">{{ tweet.user.name }}</strong>
+							<p id="screen_name"><i>@{{ tweet.user.screen_name }}</i></p>
+							<br>
+							<p id="tweet_datetime"><i class="far fa-calendar-alt"></i> {{ tweet.created_at }}</p>
+							<a href="{{ tweet.entities.urls.0.expanded_url }}"><p id="tweet_txt" style="color: #000;">{{ tweet.full_text }}</p></a>
+							<div class="twitter_photos">
+								{% if tweet.entities.media.0.media_url_https %}
+									<a href="{{ tweet.entities.media.0.media_url_https }}"><img src="{{ tweet.entities.media.0.media_url_https }}" alt="posted-image" class="tweet_pics">
+									<div class="overlay_effect">
+										<div class="overlay_txt">
+											{% if tweet.entities.hashtags.0.text %}
+												#{{ tweet.entities.hashtags.0.text }}
+											{% endif %}
+										</div>
 									</div>
-								</div>
-								</a>
+									</a>
+								{% endif %}
+							</div>
+							<ul id="tweet_counters">
+								<li class="slide_list"><i class="far fa-heart"></i><a href="#"><i id="fav_count">{{ tweet.favorite_count }}</i></a></li>
+								<li class="slide_list"><i class="fas fa-retweet"></i><a href="#"><i id="retw_count">{{ tweet.retweet_count }}</i></a></li>
+							</ul>
+							<p class="tweet_logo"><i class="fab fa-twitter" title="source: Twitter"></i></p>
+							{% if tweet.place %}
+							<hr>
+							<p id="place"><i class="fas fa-map-marked-alt"></i> {{ tweet.place.full_name }} - {{ tweet.place.country_code }}</p>
 							{% endif %}
 						</div>
-						<ul id="tweet_counters">
-							<li class="slide_list"><i class="far fa-heart"></i><a href="#"><i id="fav_count">{{ tweet.favorite_count }}</i></a></li>
-							<li class="slide_list"><i class="fas fa-retweet"></i><a href="#"><i id="retw_count">{{ tweet.retweet_count }}</i></a></li>
-						</ul>
-						<p class="tweet_logo"><i class="fab fa-twitter" title="source: Twitter"></i></p>
-						{% if tweet.place %}
-						<hr>
-						<p id="place"><i class="fas fa-map-marked-alt"></i> {{ tweet.place.full_name }} - {{ tweet.place.country_code }}</p>
-						{% endif %}
 					</div>
 				</div>
 				{% endfor %}
@@ -171,22 +176,42 @@
 				<!-- Google News data -->
 				{% for ar in all_news.articles %}
 				<div class="item">
-					<div class="masonry_style">
-						<p id="author"><strong>{{ ar.author }}</strong></p>
-						<hr>
-						<p id="article_title">{{ ar.title }}</p>
-						<a href="{{ ar.url }}"><p id="article_description" title="link to source" style="color: #000;">{{ ar.description }}</p></a>
-						<a href="{{ar.urlToImage}}"><img src="{{ar.urlToImage}}" class="article_pics"></a>
-						<hr>
-						<p class="article_datetime"><i class="far fa-newspaper"></i> {{ ar.source.name }}</p>
-						<p class="article_datetime"><i class="far fa-calendar-alt" style="padding-left: 5px;"></i> {{ ar.publishedAt }}</p>
-						<p class="source_logo" title="source: Google News"><i class="fab fa-google"></i></p>
+					<div data-aos="fade-up">
+						<div class="masonry_style">
+							<p id="author"><strong>{{ ar.author }}</strong></p>
+							<hr>
+							<p id="article_title">{{ ar.title }}</p>
+							<a href="{{ ar.url }}"><p id="article_description" title="link to source" style="color: #000;">{{ ar.description }}</p></a>
+							<a href="{{ar.urlToImage}}"><img src="{{ar.urlToImage}}" class="article_pics"></a>
+							<hr>
+							<p class="article_datetime"><i class="far fa-newspaper"></i> {{ ar.source.name }}</p>
+							<p class="article_datetime"><i class="far fa-calendar-alt" style="padding-left: 5px;"></i> {{ ar.publishedAt }}</p>
+							<p class="source_logo" title="source: Google News"><i class="fab fa-google"></i></p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+
+				<!-- Reddit data -->
+				{% for re in reddit_news %}
+				<div class="item">
+					<div data-aos="fade-up-left">
+						<div class="masonry_style">		
+							<a href="{{ re.url }}"><p class="subreddit_title">{{ re.title }}</p></a>
+							{% if re.preview.images.0.source.url %}
+								<a href="{{ re.preview.images.0.source.url }}"><img src="{{ re.preview.images.0.source.url }}" class="reddit_pics"></a>
+							{% endif %}
+							<p id="reddit_comments"><i class="far fa-comment-dots"></i> {{ re.num_comments }}</p>
+							<hr>
+							<p id="domain"><i class="far fa-newspaper"></i> {{ re.domain }}</p>
+							<p class="reddit_logo" title="source: Reddit"><i class="fab fa-reddit"></i></p>
+						</div>
 					</div>
 				</div>
 				{% endfor %}
 
 			</div>
-			<h3 id="generated">Generated with <i class="fas fa-heart generated"></i> by Hashtrend</h3>
+			<h3 id="generated">Generated with <i class="fas fa-heart animated generated"></i> by Hashtrend</h3>
 		</div>
 
 		<ul class="social-links">
@@ -206,6 +231,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<p class="text-center">Copyright © 2019 Hashtrend by Emanuele Pellegrini &nbsp; <span><a target="_blank" href="https://www.linkedin.com/in/emanuele-pellegrini/"></span><i class="fab fa-linkedin-in linkedin-personal"></i></a>&nbsp;</span> <span><a target="_blank" href="https://github.com/emas89"></span><i class="fab fa-github github-personal"></i></a></span></p>
+						<p class="credits">Credits: <a href="https://developer.twitter.com/en.html"> Twitter API</a>, <a href="https://newsapi.org/s/google-news-api"> Google News API</a>, <a href="https://www.reddit.com/dev/api/">Reddit API</a></p>
 					</div>
 				</div>
 			</div>
@@ -238,6 +264,12 @@
 
 		<!-- Appear javascript -->
 		<script type="text/javascript" src="../../static/hashtrend/plugins/jquery.appear.js"></script>
+
+		<!-- AOS javascript -->
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		<script>
+			AOS.init();
+		</script>
 
 		<!-- Initialization of Plugins -->
 		<script type="text/javascript" src="../../static/hashtrend/js/template.js"></script>

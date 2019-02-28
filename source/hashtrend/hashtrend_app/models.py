@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-# CLASS PINS
-class SavedPhotos(models.Model):
+# TABLE USERLOG
+class UserLog(models.Model):
 	"""
-	Handles saving photo's process
+	Handles user's authentication
 	"""
 	user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE, null=True)
 

@@ -10,5 +10,4 @@ urlpatterns = [
 	url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 	url(r'^register/$', views.sign_up, name='sign_up'),
 	url(r'^account/$', views.account, name='account'),
-	url(r'^faq/$', views.faq, name='faq')
 ]

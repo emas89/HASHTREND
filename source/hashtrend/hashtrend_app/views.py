@@ -8,14 +8,13 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
 from .forms import SignUpForm
-from .models import SavedPhotos
-
+from .models import UserLog
 # Tweepy library to access the Twitter API
 import tweepy
-# Facebook-SDK library to access the Facebook Graph API
-import facebook
 # News library to access the Google News API
 from newsapi import NewsApiClient
+# Python Reddit API Wrapper import
+import praw
 
 # Create your views here.
 
@@ -49,17 +48,23 @@ auth.set_access_token(twitter_access_token, access_secret)
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, compression=True)
 
 
-################################################
-#			FACEBOOK API INTERACTION		   #
-################################################
+###############################################
+#		REDDIT API INTERACTION			  #
+###############################################
 
-# Facebook keys to access the API
-app_id = settings.APP_ID
-app_secret = settings.APP_SECRET
-fb_access_token = settings.FB_USER_ACCESS_TOKEN
+# Reddit Keys to access the API
+personal_use_script = settings.PERSONAL_USE_SCRIPT
+reddit_app_secret = settings.REDDIT_APP_SECRET
+user_agent = settings.USER_AGENT
+reddit_username = settings.REDDIT_USERNAME
+reddit_pwd = settings.REDDIT_PWD
 
-# Create the API to connect to Facebook with app credentials
-graph = facebook.GraphAPI(access_token=fb_access_token, version="3.1")
+# Connect to Reddit API
+reddit = praw.Reddit(client_id=personal_use_script, \
+					client_secret=reddit_app_secret, \
+					user_agent=user_agent, \
+					username=reddit_username, \
+					password=reddit_pwd)
 
 
 ###############################################
@@ -74,32 +79,35 @@ newsapi = NewsApiClient(api_key=news_api_key)
 
 
 # SEARCH QUERIES
+@login_required
+
 def search(request):
 	"""
 	Search a trend through the form in the homepage.
-	Results comes from Twitter 'Standard Search' API,
-	Facebook 'Graph' API and Google News API.
+	Results comes from Twitter Standard Search API,
+	Facebook Graph API and Google News API.
 	"""
 	
-	# Query
+	# User's query
 	query = request.GET.get('query')
 
-	# Search for most popular tweets about user's query
-	tweets = tweepy.Cursor(api.search, q=query, lang="en", tweet_mode='extended', include_entities=True, result_type='popular').items(100)
+	# Search for 50 most popular tweets about user's query
+	tweets = tweepy.Cursor(api.search, q=query, lang="en", tweet_mode='extended', include_entities=True, result_type='popular').items(50)
 
-	#fb_data = graph.search(q=query, type='place')
-
-	# Search for most relevant news about user's query
+	# Search for 20 most relevant news about user's query
 	all_news = newsapi.get_everything(q=query, language='en', sort_by='relevancy')
 
+	# Search for 25 hottest subreddits about user's query
+	subreddit = reddit.subreddit('all')
+	reddit_news = subreddit.search(query, limit=25, sort='hot')
+
 	context = {
-		"tweets": tweets,
-		#"fb_data": fb_data
-		"all_news": all_news
+		"tweets": tweets, # most popular tweets
+		"all_news": all_news, # most relevant google news
+		"reddit_news": reddit_news # hottest subreddits
 	}
 
 	return render(request, 'hashtrend/search.html', context)
-
 
 
 # USER SIGN UP
@@ -143,14 +151,3 @@ def account(request):
 		"page_title": "Your account"
 	}
 	return render(request, 'hashtrend/account.html', context)
-
-
-
-# FAQ page
-def faq(request):
-	"""
-	Hashtrend FAQ section
-	"""
-	
-	# Render
-	return render(request, 'hashtrend/faq.html')
