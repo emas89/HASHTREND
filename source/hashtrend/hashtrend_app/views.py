@@ -30,6 +30,8 @@ def index(request):
 	return render(request, 'hashtrend/index.html')
 
 
+# APIs section
+
 ################################################
 #			TWITTER API INTERACTION			   #
 ################################################
@@ -49,7 +51,7 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, 
 
 
 ###############################################
-#		REDDIT API INTERACTION			  #
+#		REDDIT API INTERACTION			      #
 ###############################################
 
 # Reddit Keys to access the API
@@ -85,7 +87,7 @@ def search(request):
 	"""
 	Search a trend through the form in the homepage.
 	Results comes from Twitter Standard Search API,
-	Facebook Graph API and Google News API.
+	Reddit API and Google News API.
 	"""
 	
 	# User's query

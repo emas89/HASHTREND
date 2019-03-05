@@ -16,6 +16,7 @@ Sign up or login to start a search and grow your knowledge!
 * Tweepy library to access the Twitter API
 * Praw library to access the Reddit API
 * News-api library to access the Google News API
+* An user account to get the API keys and acces to their services
 
 ## 2. Database
 * PostgreSQL with psycopg2 database adapter because of Heroku deployment
