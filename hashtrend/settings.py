@@ -23,6 +23,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'b(0g+aad_3h1p=1_4!2rg==m@yfg(e0lkcnl_l1%ejhat=e@3u'
 
+# TWITTER KEYS
+TWITTER_ACCESS_TOKEN = '1041235741932761089-HmsHMCqTKqeThgn4xOlrZwaYUndTiD' # Access token
+ACCESS_SECRET = 'Rykjpwlizxqj6u1BEv4GTSBdzzg1VDPTrW1LHq5eLXgHE' # Access token secret
+CONSUMER_KEY = 'tRZNZCpvyW859Nsd3I6Izehxb' # API key
+CONSUMER_SECRET = 'Xy6FUYmqUv6MqkYeGN6oqjY2jpzzUdb71cNJqmv3kMC8mDgTgr' # API secret
+
+# REDDIT KEYS
+PERSONAL_USE_SCRIPT = 'aI5EUmT2_PTkgw'
+REDDIT_APP_SECRET = 'DcAyWVA2f9HL7QFAU5j3xemp4PY'
+USER_AGENT = 'Hashtrend'
+REDDIT_USERNAME = 'emas89'
+REDDIT_PWD = 'Senonbestemmio89'
+
+# GOOGLE NEWS KEY
+NEWS_API_KEY = '0dd591ce36e44869950b409ad856df53' # Google News API key
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
