@@ -5,7 +5,8 @@ from django.http import Http404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
+
+import config
 
 from .forms import SignUpForm
 from .models import UserLog
@@ -37,10 +38,10 @@ def index(request):
 ################################################
 
 # Twitter keys to access the API
-twitter_access_token = settings.TWITTER_ACCESS_TOKEN
-access_secret = settings.ACCESS_SECRET
-consumer_key = settings.CONSUMER_KEY
-consumer_secret = settings.CONSUMER_SECRET
+twitter_access_token = config.TWITTER_ACCESS_TOKEN
+access_secret = config.ACCESS_SECRET
+consumer_key = config.CONSUMER_KEY
+consumer_secret = config.CONSUMER_SECRET
 
 # Setup tweepy to authenticate with Twitter credentials:
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -55,11 +56,11 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, 
 ###############################################
 
 # Reddit Keys to access the API
-personal_use_script = settings.PERSONAL_USE_SCRIPT
-reddit_app_secret = settings.REDDIT_APP_SECRET
-user_agent = settings.USER_AGENT
-reddit_username = settings.REDDIT_USERNAME
-reddit_pwd = settings.REDDIT_PWD
+personal_use_script = config.PERSONAL_USE_SCRIPT
+reddit_app_secret = config.REDDIT_APP_SECRET
+user_agent = config.USER_AGENT
+reddit_username = config.REDDIT_USERNAME
+reddit_pwd = config.REDDIT_PWD
 
 # Connect to Reddit API
 reddit = praw.Reddit(client_id=personal_use_script, \
@@ -74,7 +75,7 @@ reddit = praw.Reddit(client_id=personal_use_script, \
 ###############################################
 
 # Google News API key to access the API
-news_api_key = settings.NEWS_API_KEY
+news_api_key = config.NEWS_API_KEY
 
 # Create the API to connect to Google News with API key
 newsapi = NewsApiClient(api_key=news_api_key)

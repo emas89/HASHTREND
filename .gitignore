@@ -3,5 +3,5 @@ env/
 *.pot
 *.pyc
 __pycache__/
-settings.py
+config.py
 db.sqlite3
