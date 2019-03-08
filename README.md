@@ -19,5 +19,18 @@ Sign up or login to start a search and grow your knowledge!
 * An user account to get the API keys and acces to their services
 
 ## 2. Database
-* PostgreSQL with psycopg2 database adapter because of Heroku deployment
+* PostgreSQL with psycopg2-binary database adapter because of Heroku deployment
 * Run `manage.py migrate` command to implement the DB structure
+
+## 3. Environment Variables and Heroku Deployment
+This project is ready to deploy on Heroku platform. In order to run it, please set the following environment variables:
+
+* `Django Secret Key` -> Secret key used by Django to generate CSRF token;
+* PostgreSQL DB name for local use;
+* PostgreSQL password for local use;
+* PostgreSQL username for local use;
+* `ENV` -> App environment: it can be DEVELOPMENT or PRODUCTION.
+
+To deploy the application on Heroku, please set `ENV=PRODUCTION` by using __Heroku Postgres__ and __Whitenoise__.<br>
+
+Heroku deployment assumes that into the project's dependencies there are `requirements.txt` with gunicorn and whitenoise installed, `Procfile` and the `runtime.txt` file (**optional**) to indicate your Python version for the project.
